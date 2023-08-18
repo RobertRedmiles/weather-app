@@ -15,3 +15,19 @@
     border: 3px solid black;
     font-family: fantasy;
 }
+input {
+    margin-top: 30px;
+    
+}
+
+label {
+    margin-left: 45px;
+    color: royalblue;
+    font-weight: 800;
+}
+
+button {
+    font-weight: 640;
+    color: maroon
+
+}

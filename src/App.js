@@ -1,6 +1,7 @@
 import LocationForm from './components/LocationForm';
 import WeatherData from './components/WeatherData';
 import './App.css';
+import './components/LocationForm.css';
 import api from './api/weatherAPI';
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -8,9 +9,11 @@ import HourlyData from './components/HourlyData';
 
 
 
+import Graph from './components/Graph';
 
 function App() {
 
+// -=-=-=-= USE EFFECTs  -==-=-=-=-=-=-=-=-
   const[forecast, setForecast] = useState(null);
   const[searchCounter, setSearchCounter] = useState(0);
   
@@ -30,6 +33,8 @@ function App() {
 
 
 
+
+// =-=-=-==-==- SUBMIT HANDLER _-==-=-=-=-=-=-=-=-=-
  const handlerSubmitLocation = async (formData) => {
       const { city, state } = formData;
 
@@ -45,27 +50,30 @@ function App() {
   }
 
   const getWeatherDataFromGeolocation = () => {
-    console.log("Geolocation", navigator.geolocation);
+    
 
     navigator.geolocation.getCurrentPosition(async (location) => {
+      
       const { latitude, longitude } = location.coords;
 
       try {
         const res = await api(`/forecast?lat=${latitude}&lon=${longitude}&cnt=3appid=${process.env.REACT_APP_API_KEY}`)
-        console.log(res)
+        
 
       } catch (error) {
-
+        
       }
-    },
+    },// WHAT TO PUT HERE 
     (error) => {
-      console.log(error);
+      
       
     }
     )
 
   }
 
+
+// _+_+_+_+_+_+_+_+_+_+_  RETURN _+_+_+_+_+_+_+_+_+_+
   return (
     <div className="App">
 
@@ -85,6 +93,9 @@ function App() {
         </BrowserRouter>
 
         
+
+        { forecast && <Graph data={forecast} />}
+
         
 
     </div>
