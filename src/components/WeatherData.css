@@ -1,0 +1,22 @@
+.main {
+    background-image: url("./images/moon");
+    background-size: cover;
+    margin: 5% 20%;
+    padding: 10%;
+   
+
+}
+
+.hourButton {
+    background-color: pink;
+    border-radius: 30%;
+    cursor: pointer;
+}
+
+.header {
+    color: rgb(47, 193, 171);
+}
+
+.cityName {
+    color: rgb(47, 193, 171);
+}

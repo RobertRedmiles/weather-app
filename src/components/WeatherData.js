@@ -1,23 +1,42 @@
-function WeatherData({ forecast }) {
+import './WeatherData.css';
+import { Outlet } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
+
+
+function WeatherData({ forecast }) {
+   
+    const navigate = useNavigate()
+
+ 
     const { city, list } = forecast;
+    const showHour = (dt) => {
+        navigate(`/weather/${dt}`)
+       
+    }
 
 
     return (
         <>
-            <h2>Weather Data components</h2>
-            <p>City Name: {city.name}</p>
-            {list.map((weather, index) => (
+           <section className='main'>
+                <h2 className='header'>Weather Data components</h2>
+                <p className='cityName'>City Name: {city.name}</p>
+                {list.map((weather, index) => (
                 <div key={index}>
-                    <h4>Hour:{(index + 1) * 3}</h4>
-                    <p>Weather feels like: {weather.main.feels_like}</p>
-                    <p>Pressure: {weather.main.pressure}</p>
-                    <p>Weather: {weather.weather[0].main}</p>
-                    <p>Description: {weather.weather[0].description}</p>
+                    <button className='hourButton' onClick={() => showHour(weather.dt)}>Hour:{(index + 1) * 3}</button>
                 </div>
-            ))}
+    
+                ))}
+            
+           
+                <Outlet/>
+            </section> 
         </>
     )
 }
 
 export default WeatherData;
+
+
+
+
